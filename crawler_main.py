@@ -26,7 +26,7 @@ def get_data(url):
     lordPhone_e="NULL"
     pic_e="NULL"
 
-    browser = webdriver.Chrome()
+    browser = webdriver.Chrome("C:\python\Final_Project\chromedriver.exe")
     browser.get(url)
     time.sleep(1)
     title_elem = browser.find_elements(by=By.XPATH,value="//section//div[@class='house-title']/h1")
@@ -69,7 +69,7 @@ def get_data(url):
 
 
 def main(outputfile,main_url):
-    browser = webdriver.Chrome()
+    browser = webdriver.Chrome("C:\python\Final_Project\chromedriver.exe")
     browser.get(main_url)
     with open(outputfile,'w', newline='',encoding='utf-8') as csvfile:
         writer = csv.writer(csvfile)

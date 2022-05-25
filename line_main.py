@@ -54,7 +54,6 @@ def handle_message(event):
 def handel_message(event):
     reply = type_selector()
     reply2 = house_show()
-    print(event.postback.data)
     if reply.is_type_selector(event.postback.data):
         line_bot_api.reply_message(
             event.reply_token,
