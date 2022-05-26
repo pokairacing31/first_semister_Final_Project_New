@@ -3,13 +3,15 @@ from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 import time
 import csv
-import requests
 from time import sleep
 from selenium.webdriver.common.by import By
 import pandas as pd
+import threading
+
+
 
 def cleaner(url_list):
-    for obj in output_file_list:
+    for obj in url_list:
         df = pd.read_csv(obj[0],sep=',')
         new_df = df.dropna()
         new_df.to_csv(obj[0],index=None,index_label=None)
@@ -96,7 +98,7 @@ def main(outputfile,main_url):
                 browser.find_element_by_class_name('pageNext').click()
                 time.sleep(3)
     
-if __name__ == '__main__':
+def run():
     # -------- configurable parameter -------- #
     output_file_list=[['shilin_indep_suite_output.csv',"https://rent.591.com.tw/?section=8&searchtype=1&kind=2"],
                         ['shilin_sublet_output.csv',"https://rent.591.com.tw/?section=8&searchtype=1&kind=3"],
@@ -114,6 +116,9 @@ if __name__ == '__main__':
         main(output_file_name,url)
 
     cleaner(output_file_list)
-        
-    
     print('\nfinish!')
+
+while True:
+    timer = threading.Timer(0,run)
+    timer.start()
+    time.sleep(3600)
