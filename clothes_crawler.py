@@ -4,7 +4,7 @@ import requests
 import json
 import pandas as pd
 
-google_key='AIzaSyCWl1RPS5Rfyq5zF1-phhtdBZlxym0MrkI'
+google_key=''
 gmaps = googlemaps.Client(key=google_key)
 
 buisness_list=[]
