@@ -37,6 +37,7 @@ def get_data(url):
     price_elem = browser.find_elements(by=By.XPATH,value="//section//div//span[@class='price']/b")
     for p_elem in price_elem:
         price_e = p_elem.text
+        
     addr_elem = browser.find_elements(by=By.XPATH,value="//section//div//span[@class='load-map']")
     for a_elem in addr_elem:
         addr_e = a_elem.text

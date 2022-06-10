@@ -21,7 +21,7 @@ def get_data(url):
     lordPhone="NULL"
     pic="NULL"
 
-    browser = webdriver.Chrome()
+    browser = webdriver.Chrome("C:\python\Final_Project\chromedriver.exe")
     browser.get(url)
     time.sleep(1)
     title_elem = browser.find_elements(by=By.XPATH,value="//section//div[@class='house-title']/h1")
@@ -30,6 +30,7 @@ def get_data(url):
     price_elem = browser.find_elements(by=By.XPATH,value="//section//div//span[@class='price']/b")
     for p_elem in price_elem:
         price = p_elem.text
+        p_text = int(price.replace(',',''))
     addr_elem = browser.find_elements(by=By.XPATH,value="//section//div//span[@class='load-map']")
     for a_elem in addr_elem:
         addr = a_elem.text
@@ -55,7 +56,7 @@ def get_data(url):
     for pic in pic_elem:
         pic = pic.get_attribute("src")
 
-    return title,price,addr,style,size,floor,Class,lordName,lordPhone,pic
+    return title,p_text,addr,style,size,floor,Class,lordName,lordPhone,pic
 
         
 
@@ -63,7 +64,7 @@ def get_data(url):
 
 
 def main(outputfile):
-    browser = webdriver.Chrome()
+    browser = webdriver.Chrome("C:\python\Final_Project\chromedriver.exe")
     browser.get("https://rent.591.com.tw/?region=1&section=8")
     with open(outputfile,'w', newline='',encoding='utf-8') as csvfile:
         writer = csv.writer(csvfile)
